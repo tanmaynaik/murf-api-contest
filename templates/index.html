@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paragraph Input Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+    }
+    .form-container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
+    }
+    textarea, select {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    textarea {
+      height: 150px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Translate Your Paragraph</h2>
+    <form  method="post">
+      <!-- Input text -->
+      <textarea name="paragraph" placeholder="Type your paragraph here..."></textarea>
+      
+      <!-- Language dropdown -->
+      <select name="language" required>
+        <option value="" disabled {% if not request.form.get('language') %}selected{% endif %}>Select target language</option>
+        <option value="en-US">English - US & Canada</option>
+        <option value="en-UK">English - UK</option>
+        <option value="en-IN">English - India</option>
+        <option value="en-AU">English - Australia</option>
+        <option value="en-SCOTT">English - Scotland</option>
+        <option value="es-MX">Spanish - Mexico</option>
+        <option value="es-ES">Spanish - Spain</option>
+        <option value="fr-FR">French - France</option>
+        <option value="de-DE">German - Germany</option>
+        <option value="it-IT">Italian - Italy</option>
+        <option value="nl-NL">Dutch - Netherlands</option>
+        <option value="pt-BR">Portuguese - Brazil</option>
+        <option value="zh-CN">Chinese - China</option>
+        <option value="ja-JP">Japanese - Japan</option>
+        <option value="ko-KR">Korean - Korea</option>
+        <option value="hi-IN">Hindi - India</option>
+        <option value="ta-IN">Tamil - India</option>
+        <option value="bn-IN">Bengali - India</option>
+        <option value="hr-HR">Croatian - Croatia</option>
+        <option value="sk-SK">Slovak - Slovakia</option>
+        <option value="pl-PL">Polish - Poland</option>
+        <option value="el-GR">Greek - Greece</option>
+      </select>
+
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+
+    {% if translated_text %}
+      <h3>Translated Text:</h3>
+      <textarea readonly>{{ translated_text }}</textarea>
+    {% endif %}
+  </div>
+</body>
+</html>
